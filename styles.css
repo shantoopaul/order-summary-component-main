@@ -1,0 +1,124 @@
+/* Reference image */
+/* body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('./reference/desktop-design.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+    z-index: 1;
+} */
+
+/* red-hat-display-500 */
+@font-face {
+  font-display: swap;
+  font-family: 'Red Hat Display';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/red-hat-display-v21-latin-500.woff2') format('woff2');
+}
+
+/* red-hat-display-700 */
+@font-face {
+  font-display: swap;
+  font-family: 'Red Hat Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/red-hat-display-v21-latin-700.woff2') format('woff2');
+}
+
+/* red-hat-display-900 */
+@font-face {
+  font-display: swap;
+  font-family: 'Red Hat Display';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/red-hat-display-v21-latin-900.woff2') format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colors */
+    --blue-100: hsl(225, 100%, 94%);
+    --blue-700: hsl(245, 75%, 52%);
+    --blue-50: hsl(225, 100%, 98%);
+    --gray-600: hsl(224, 23%, 55%);
+    --blue-950: hsl(223, 47%, 23%);
+
+    /* Font */
+    --font-primary: 'Red Hat Display', sans-serif;
+    --fw-500: 500;
+    --fw-700: 700;
+    --fw-900: 900;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--fw-500);
+    color: var(--gray-600);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.attribution {
+    margin-bottom: -12rem;
+    
+    /* Style reference link */
+    /* https://stackoverflow.com/questions/30352431/css-transition-not-working-with-underline */
+    
+    a {
+        color: var(--blue-700);
+    }
+
+    a::after {
+        content: '';
+        width: 0px;
+        height: 1px;
+        display: block;
+        background: var(--blue-700);
+    }
+
+    a:hover::after {
+        width: 100%;
+    }
+}
+
+/* https://www.joshwcomeau.com/snippets/react-components/visually-hidden/ */
+.visually-hidden:not(:focus):not(:active) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0); /* Legacy property for Internet Explorer */
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    a::after {
+        transition: .3s ease-in-out;
+    }
+}

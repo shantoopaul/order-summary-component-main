@@ -1,37 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <!-- Metatags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Shanto Paul" />
+    <meta name="description" content="Frontend Mentor challenge" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <!-- Favicon -->
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./assets/favicons/favicon-32x32.png" />
+
+
+		<!-- Stylesheet -->
+		<link rel="stylesheet" href="styles.css" />
   
-  <title>Frontend Mentor | Order summary card</title>
+		<!-- Page title -->
+    <title>Frontend Mentor | Order summary card</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="visually-hidden">
+        Frontend Mentor | Order summary card
+      </h1>
+      <picture class="card-image">
+        <img
+          src="./assets/svgs/illustration-hero.svg"
+          alt=""
+          height="220"
+          width="450"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </picture>
+      <div class="card-info">
+          <h2 class="card-title">Order Summary</h2>
+          <p class="card-content">
+            You can now listen to millions of songs, audiobooks, and podcasts on any device anywhere you like!
+          </p>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+          <div class="card-plan-section">
+            <div class="card-plan-type">
+              <img
+                src="./assets/svgs/icon-music.svg"
+                alt=""
+                width="48"
+                height="48"
+                decoding="async"
+                aria-hidden="true"
+              />
+              <div class="card-plan">
+                <h3 class="card-plan-title">Annual Plan</h3>
+                <p class="card-plan-price">$59.99/year</p>
+              </div>
+            </div>
+            <a href="https://www.frontendmentor.io/profile/shantoopaul" target="_blank" rel="noopener noreferrer" class="card-change-plan">
+              Change
+              <span class="visually-hidden">(opens link in new tab)</span>
+            </a>
+          </div>
 
-  Order Summary
-
-  You can now listen to millions of songs, audiobooks, and podcasts on any 
-  device anywhere you like!
-
-  Annual Plan
-  $59.99/year
-
-  Change
-
-  Proceed to Payment
-  Cancel Order
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+          <div class="card-action-section">
+            <button class="card-button">Proceed to Payment</button>
+            <a href="https://www.frontendmentor.io/profile/shantoopaul" target="_blank" rel="noopener noreferrer" class="card-cancel-order">
+              Cancel Order
+              <span class="visually-hidden">(opens link in new tab)</span>
+            </a>
+          </div>
+        </div>
+        <div class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener noreferrer">
+            Frontend Mentor
+            <span class="visually-hidden">(opens link in new tab)</span>
+          </a>. 
+          Coded by <a href="https://www.frontendmentor.io/profile/shantoopaul" target="_blank" rel="noopener noreferrer">
+            Shanto Paul
+            <span class="visually-hidden">(opens link in new tab)</span>
+          </a>.
+        </div>
+    </main>
+  </body>
 </html>
