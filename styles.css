@@ -1,47 +1,31 @@
-/* Reference image */
-/* body::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url('./reference/desktop-design.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 1;
-    z-index: 1;
-} */
-
 /* red-hat-display-500 */
 @font-face {
-  font-display: swap;
-  font-family: 'Red Hat Display';
-  font-style: normal;
-  font-weight: 500;
-  src: url('../fonts/red-hat-display-v21-latin-500.woff2') format('woff2');
+    font-display: swap;
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: 500;
+    src: url("./assets/fonts/red-hat-display-v21-latin-500.woff2")
+        format("woff2");
 }
 
 /* red-hat-display-700 */
 @font-face {
-  font-display: swap;
-  font-family: 'Red Hat Display';
-  font-style: normal;
-  font-weight: 700;
-  src: url('../fonts/red-hat-display-v21-latin-700.woff2') format('woff2');
+    font-display: swap;
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: 700;
+    src: url("./assets/fonts/red-hat-display-v21-latin-700.woff2")
+        format("woff2");
 }
 
 /* red-hat-display-900 */
 @font-face {
-  font-display: swap;
-  font-family: 'Red Hat Display';
-  font-style: normal;
-  font-weight: 900;
-  src: url('../fonts/red-hat-display-v21-latin-900.woff2') format('woff2');
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    font-display: swap;
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: 900;
+    src: url("./assets/fonts/red-hat-display-v21-latin-900.woff2")
+        format("woff2");
 }
 
 :root {
@@ -53,16 +37,61 @@
     --blue-950: hsl(223, 47%, 23%);
 
     /* Font */
-    --font-primary: 'Red Hat Display', sans-serif;
+    --font-primary: "Red Hat Display", sans-serif;
     --fw-500: 500;
     --fw-700: 700;
     --fw-900: 900;
+
+    /* Font sizes */
+    --fs-28: clamp(1.375rem, 1.1089rem + 1.0017vw, 1.75rem);
+    --fs-16: 1rem;
+    --fs-14: 0.875rem;
+
+    /* Spacing */
+    --s--80: -5rem;
+    --s-12: 0.75rem;
+    --s-14: 0.875rem;
+    --s-20: 1.25rem;
+    --s-24: 1.5rem;
+    --s-28: 1.75rem;
+    --s-32: 2rem;
+    --s-42: 2.625rem;
+    --s-48: clamp(2rem, 1.2905rem + 2.6711vw, 3rem);
+
+    /* Border radius */
+    --radius-sm: 0.75em; /* 12px */
+    --radius-md: 1.25em; /* 20px */
+
+    /* Shadows */
+    --shadow-elevate: 0 1.25rem 1.25rem rgba(56, 42, 225, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
+    position: relative;
     font-family: var(--font-primary);
     font-weight: var(--fw-500);
     color: var(--gray-600);
+    line-height: 1.6;
+    background-color: var(--blue-100);
+    overflow: hidden;
+}
+
+/* https://blog.logrocket.com/creating-infinite-css-background-image-loop/ */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3600px;
+    height: 437px;
+    background: url(./assets/svgs/pattern-background-desktop.svg) repeat-x;
+    z-index: -1;
 }
 
 img {
@@ -83,27 +112,111 @@ button {
     background: none;
 }
 
+main {
+    height: 100dvh;
+    display: grid;
+    place-items: center;
+    place-content: center;
+    margin-inline: var(--s-32);
+}
+
+.card {
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--radius-md);
+    background-color: var(--blue-50);
+    box-shadow: var(--shadow-elevate);
+}
+
+.card-image img {
+    object-fit: cover;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.card-info {
+    padding: var(--s-42) var(--s-48) var(--s-48);
+}
+
+.card-title {
+    font-weight: var(--fw-900);
+    color: var(--blue-950);
+    font-size: var(--fs-28);
+    margin-bottom: var(--s-12);
+}
+
+.card-content {
+    letter-spacing: 0.02em;
+    margin-bottom: var(--s-20);
+}
+
+.card-plan-section {
+    display: flex;
+    align-items: center;
+    justify-content: s-between;
+    background-color: var(--blue-50);
+    padding: var(--s-24);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--s-32);
+}
+
+.card-plan-type {
+    display: flex;
+    align-items: center;
+    gap: var(--s-20);
+}
+
+.card-plan-title {
+    font-weight: var(--fw-900);
+    color: var(--blue-950);
+    font-size: var(--fs-16);
+}
+
+.card-change-plan {
+    color: var(--blue-700);
+    font-weight: var(--fw-700);
+    font-size: var(--fs-14);
+    text-decoration: underline;
+}
+
+.card-action-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-28);
+}
+
+.card-payment-button {
+    background-color: var(--blue-700);
+    color: var(--blue-50);
+    padding: var(--s-14) 0;
+    border-radius: var(--radius-sm);
+    font-weight: var(--fw-900);
+    box-shadow: var(--shadow-elevate);
+}
+
+.card-cancel-order {
+    color: var(--gray-600);
+    font-weight: var(--fw-900);
+}
+
 .attribution {
-    margin-bottom: -12rem;
-    
-    /* Style reference link */
-    /* https://stackoverflow.com/questions/30352431/css-transition-not-working-with-underline */
-    
-    a {
-        color: var(--blue-700);
-    }
+    margin-bottom: var(--s--80);
+}
 
-    a::after {
-        content: '';
-        width: 0px;
-        height: 1px;
-        display: block;
-        background: var(--blue-700);
-    }
+.attribution a {
+    color: var(--blue-700);
+}
 
-    a:hover::after {
-        width: 100%;
-    }
+.attribution a::after {
+    content: "";
+    width: 0;
+    height: 1px;
+    display: block;
+    background: var(--blue-700);
+}
+
+.attribution a:hover::after {
+    width: 100%;
 }
 
 /* https://www.joshwcomeau.com/snippets/react-components/visually-hidden/ */
@@ -112,13 +225,43 @@ button {
     width: 1px;
     height: 1px;
     overflow: hidden;
-    clip: rect(0 0 0 0); /* Legacy property for Internet Explorer */
+    clip: rect(0 0 0 0);
     clip-path: inset(50%);
     white-space: nowrap;
 }
 
 @media (prefers-reduced-motion: no-preference) {
     a::after {
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
     }
+
+    /* https://blog.logrocket.com/creating-infinite-css-background-image-loop/ */
+    body::before {
+        animation: wave 12s linear infinite;
+    }
+}
+
+/* https://blog.logrocket.com/creating-infinite-css-background-image-loop/ */
+@keyframes wave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-1440px);
+    }
+}
+
+/* Reference image */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./reference/mobile-design.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    z-index: 99999999999999999;
 }
