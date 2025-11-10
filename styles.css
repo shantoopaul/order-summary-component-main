@@ -35,6 +35,7 @@
     --blue-50: hsl(225, 100%, 98%);
     --gray-600: hsl(224, 23%, 55%);
     --blue-950: hsl(223, 47%, 23%);
+    --white: hsl(0, 0%, 100%);
 
     /* Font */
     --font-primary: "Red Hat Display", sans-serif;
@@ -44,19 +45,21 @@
 
     /* Font sizes */
     --fs-28: clamp(1.375rem, 1.1089rem + 1.0017vw, 1.75rem);
-    --fs-16: 1rem;
+    --fs-16: clamp(0.875rem, 0.7863rem + 0.3339vw, 1rem);
     --fs-14: 0.875rem;
 
     /* Spacing */
     --s--80: -5rem;
     --s-12: 0.75rem;
-    --s-14: 0.875rem;
     --s-20: 1.25rem;
-    --s-24: 1.5rem;
-    --s-28: 1.75rem;
+    --s-24: clamp(1.125rem, 0.8589rem + 1.0017vw, 1.5rem);
+    --s-28: clamp(1.25rem, 0.8952rem + 1.3356vw, 1.75rem);
     --s-32: 2rem;
-    --s-42: 2.625rem;
-    --s-48: clamp(2rem, 1.2905rem + 2.6711vw, 3rem);
+    --s-42: clamp(1.75rem, 1.1292rem + 2.3372vw, 2.625rem);
+    --s-48: clamp(1.5rem, 0.4357rem + 4.0067vw, 3rem);
+    --s-32-48: clamp(2rem, 1.2905rem + 2.6711vw, 3rem);
+    --s-16-20: clamp(1rem, 0.8226rem + 0.6678vw, 1.25rem);
+    --s-24-32: clamp(1.5rem, 1.1452rem + 1.3356vw, 2rem);
 
     /* Border radius */
     --radius-sm: 0.75em; /* 12px */
@@ -125,7 +128,7 @@ main {
     width: 100%;
     text-align: center;
     border-radius: var(--radius-md);
-    background-color: var(--blue-50);
+    background-color: var(--white);
     box-shadow: var(--shadow-elevate);
 }
 
@@ -135,7 +138,7 @@ main {
 }
 
 .card-info {
-    padding: var(--s-42) var(--s-48) var(--s-48);
+    padding: var(--s-42) var(--s-48) var(--s-32-48);
 }
 
 .card-title {
@@ -153,17 +156,32 @@ main {
 .card-plan-section {
     display: flex;
     align-items: center;
-    justify-content: s-between;
+    justify-content: space-between;
     background-color: var(--blue-50);
     padding: var(--s-24);
     border-radius: var(--radius-sm);
-    margin-bottom: var(--s-32);
+    margin-bottom: var(--s-24-32);
 }
 
 .card-plan-type {
     display: flex;
     align-items: center;
-    gap: var(--s-20);
+    gap: var(--s-16-20);
+}
+
+.flip-card {
+    background-color: var(--blue-100);
+    border-radius: 50%;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
 }
 
 .card-plan-title {
@@ -176,27 +194,48 @@ main {
     color: var(--blue-700);
     font-weight: var(--fw-700);
     font-size: var(--fs-14);
-    text-decoration: underline;
+    border-block-end: 2px solid var(--blue-700);
+}
+
+.card-change-plan:hover {
+    transform: scale(1.05);
+    border-block-end: 1px solid hsl(245, 75%, 52%, 0);
 }
 
 .card-action-section {
     display: flex;
     flex-direction: column;
-    gap: var(--s-28);
+    gap: var(--s-12);
+    font-size: var(--fs-16);
 }
 
 .card-payment-button {
     background-color: var(--blue-700);
     color: var(--blue-50);
-    padding: var(--s-14) 0;
+    padding-block: var(--s-12);
     border-radius: var(--radius-sm);
     font-weight: var(--fw-900);
+}
+
+.card-payment-button:hover {
     box-shadow: var(--shadow-elevate);
 }
 
 .card-cancel-order {
     color: var(--gray-600);
     font-weight: var(--fw-900);
+    padding-block: var(--s-12);
+    border-radius: var(--radius-sm);
+    border: 1px solid hsl(245, 75%, 52%, 0);
+}
+
+.card-cancel-order:active,
+.card-cancel-order:hover {
+    box-shadow: var(--shadow-elevate);
+}
+
+.card-cancel-order:hover {
+    border: 1px solid var(--blue-700);
 }
 
 .attribution {
@@ -230,14 +269,29 @@ main {
     white-space: nowrap;
 }
 
+
+@media screen and (max-width: 425px) {
+    main {
+        padding-block: var(--s-32);
+    }
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
-    a::after {
+    a::after,
+    .card-cancel-order,
+    .card-payment-button {
         transition: 0.3s ease-in-out;
     }
-
     /* https://blog.logrocket.com/creating-infinite-css-background-image-loop/ */
     body::before {
         animation: wave 12s linear infinite;
+    }
+    .card-change-plan {
+        transition: border-block-end 0.3s ease, transform 0.3s ease;
+    }
+    .flip-card-inner {
+        transition: transform 0.5s;
     }
 }
 
@@ -252,16 +306,16 @@ main {
 }
 
 /* Reference image */
-body::after {
+/* body::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('./reference/mobile-design.jpg');
+    background-image: url('./reference/desktop-design.jpg');
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.8;
     z-index: 99999999999999999;
-}
+} */
