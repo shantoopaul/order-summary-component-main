@@ -93,8 +93,6 @@ body::before {
     left: 0;
     width: 3600px;
     height: 437px;
-    width: 100%;
-    height: 100%;
     background: url(./assets/svgs/pattern-background-desktop.svg) repeat-x;
     z-index: -1;
 }
@@ -286,9 +284,9 @@ main {
         transition: 0.3s ease-in-out;
     }
     /* https://blog.logrocket.com/creating-infinite-css-background-image-loop/ */
-    /* body::before {
+    body::before {
         animation: wave 12s linear infinite;
-    } */
+    }
     .card-change-plan {
         transition: border-block-end 0.3s ease, transform 0.3s ease;
     }
